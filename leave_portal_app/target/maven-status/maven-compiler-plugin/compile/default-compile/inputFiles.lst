@@ -1,0 +1,16 @@
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/LeavePortalAppApplication.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/config/OciConfiguration.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/config/SecurityConfiguration.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/controller/LeaveUploadController.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/controller/UserController.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/dto/ObjectUploadResult.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/dto/UploadedObjectResponse.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/exception/GlobalExceptionHandler.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/exception/InvalidFileException.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/model/LeaveCategorizationResult.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/model/LeaveCategory.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/model/LeaveRequestEntity.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/repository/LeaveRequestRepository.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/service/LeaveCategorizationService.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/service/LeaveRequestDatabaseService.java
+/Users/safa/Desktop/AgileOraclesOCIEvalutaionArea/leave_portal_app/src/main/java/com/agileoracles/leave_portal_app/service/OciObjectStorageService.java

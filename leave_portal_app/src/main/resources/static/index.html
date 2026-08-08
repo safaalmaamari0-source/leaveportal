@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leave Request Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #182230;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            padding: 32px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 16px 45px rgba(31, 41, 55, 0.10);
+        }
+
+        .header {
+            margin-bottom: 26px;
+            text-align: center;
+        }
+
+        .icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: #eaf1ff;
+            font-size: 27px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 27px;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .user-box {
+            margin-bottom: 22px;
+            padding: 14px 16px;
+            border: 1px solid #e4e7ec;
+            border-radius: 12px;
+            background: #f8fafc;
+        }
+
+        .user-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #667085;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #authenticatedUser {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .field-label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #475467;
+            font-size: 14px;
+        }
+
+        .file-input::file-selector-button {
+            margin-right: 12px;
+            padding: 9px 13px;
+            border: none;
+            border-radius: 7px;
+            background: #eff4ff;
+            color: #175cd3;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .file-input::file-selector-button:hover {
+            background: #dbe7ff;
+        }
+
+        .upload-button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .upload-button:disabled {
+            background: #98a2b3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #475467;
+            background: #f8fafc;
+            border: 1px solid #e4e7ec;
+        }
+
+        .success {
+            color: #067647;
+            background: #ecfdf3;
+            border: 1px solid #abefc6;
+        }
+
+        .error {
+            text-align: center;
+            color: #b42318;
+            background: #fef3f2;
+            border: 1px solid #fecdca;
+        }
+
+        .success-title {
+            margin-bottom: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .leave-type {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 16px;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: #d1fadf;
+            color: #05603a;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .result-item {
+            margin-top: 10px;
+            padding: 11px 12px;
+            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid #d1fadf;
+        }
+
+        .result-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #667085;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .result-value {
+            display: block;
+            color: #182230;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .footer {
+            margin-top: 22px;
+            text-align: center;
+            color: #98a2b3;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+        <div class="icon">📄</div>
+
+        <h1>Leave Request</h1>
+
+        <p class="subtitle">
+            Upload your leave request.
+        </p>
+    </div>
+
+    <div class="user-box">
+        <span class="user-label">Signed in as</span>
+        <span id="authenticatedUser">Loading user...</span>
+    </div>
+
+    <form id="uploadForm">
+
+        <label for="file" class="field-label">
+            Leave request file
+        </label>
+
+        <input
+                type="file"
+                id="file"
+                name="file"
+                class="file-input"
+                accept=".txt,text/plain"
+                required
+        >
+
+        <button
+                type="submit"
+                id="uploadButton"
+                class="upload-button"
+        >
+            Upload Request
+        </button>
+
+    </form>
+
+    <div id="loadingMessage" class="status loading">
+        Uploading your leave request...
+    </div>
+
+    <div id="successMessage" class="status success">
+
+        <div class="success-title">
+            Request uploaded successfully
+        </div>
+
+        <span id="leaveCategory" class="leave-type"></span>
+
+        <div class="result-item">
+            <span class="result-label">OCI Object Name</span>
+            <span id="objectName" class="result-value"></span>
+        </div>
+
+        <div class="result-item">
+            <span class="result-label">OCI Object ID</span>
+            <span id="objectId" class="result-value"></span>
+        </div>
+
+    </div>
+
+    <div id="errorMessage" class="status error"></div>
+
+    <div class="footer">
+        Leave Portal Application
+    </div>
+
+</div>
+
+<script>
+    const authenticatedUserElement =
+        document.getElementById("authenticatedUser");
+
+    const uploadForm =
+        document.getElementById("uploadForm");
+
+    const fileInput =
+        document.getElementById("file");
+
+    const uploadButton =
+        document.getElementById("uploadButton");
+
+    const loadingMessage =
+        document.getElementById("loadingMessage");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const leaveCategory =
+        document.getElementById("leaveCategory");
+
+    const objectName =
+        document.getElementById("objectName");
+
+    const objectId =
+        document.getElementById("objectId");
+
+    async function loadAuthenticatedUser() {
+        try {
+            const response =
+                await fetch("/api/user");
+
+            if (!response.ok) {
+                throw new Error(
+                    "Unable to load authenticated user."
+                );
+            }
+
+            const user =
+                await response.json();
+
+            authenticatedUserElement.textContent =
+                user.email ||
+                user.name ||
+                "Authenticated user";
+
+        } catch (error) {
+            authenticatedUserElement.textContent =
+                "Authenticated user";
+        }
+    }
+
+    uploadForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            hideMessages();
+
+            const file =
+                fileInput.files[0];
+
+            if (!file) {
+                showError(
+                    "Please select a TXT file."
+                );
+                return;
+            }
+
+            if (!file.name
+                .toLowerCase()
+                .endsWith(".txt")) {
+
+                showError(
+                    "Only TXT files are allowed."
+                );
+                return;
+            }
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "file",
+                file
+            );
+
+            loadingMessage.style.display =
+                "block";
+
+            uploadButton.disabled =
+                true;
+
+            try {
+                const response =
+                    await fetch(
+                        "/api/leave/upload",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+                const result =
+                    await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.message ||
+                        "The leave request could not be uploaded."
+                    );
+                }
+
+                loadingMessage.style.display =
+                    "none";
+
+                leaveCategory.textContent =
+                    "Leave Type: " +
+                    result.leaveCategory;
+
+                objectName.textContent =
+                    result.objectName ||
+                    "Not available";
+
+                objectId.textContent =
+                    result.objectId ||
+                    "Not available";
+
+                successMessage.style.display =
+                    "block";
+
+                fileInput.value = "";
+
+            } catch (error) {
+                loadingMessage.style.display =
+                    "none";
+
+                showError(error.message);
+
+            } finally {
+                uploadButton.disabled =
+                    false;
+            }
+        }
+    );
+
+    function hideMessages() {
+        loadingMessage.style.display =
+            "none";
+
+        successMessage.style.display =
+            "none";
+
+        errorMessage.style.display =
+            "none";
+    }
+
+    function showError(message) {
+        errorMessage.textContent =
+            message;
+
+        errorMessage.style.display =
+            "block";
+    }
+
+    loadAuthenticatedUser();
+</script>
+
+</body>
+</html>

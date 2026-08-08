@@ -1,0 +1,16 @@
+com/agileoracles/leave_portal_app/model/LeaveCategory.class
+com/agileoracles/leave_portal_app/repository/LeaveRequestRepository.class
+com/agileoracles/leave_portal_app/controller/LeaveUploadController.class
+com/agileoracles/leave_portal_app/dto/ObjectUploadResult.class
+com/agileoracles/leave_portal_app/exception/InvalidFileException.class
+com/agileoracles/leave_portal_app/model/LeaveCategorizationResult.class
+com/agileoracles/leave_portal_app/config/SecurityConfiguration.class
+com/agileoracles/leave_portal_app/service/OciObjectStorageService.class
+com/agileoracles/leave_portal_app/controller/UserController.class
+com/agileoracles/leave_portal_app/model/LeaveRequestEntity.class
+com/agileoracles/leave_portal_app/dto/UploadedObjectResponse.class
+com/agileoracles/leave_portal_app/LeavePortalAppApplication.class
+com/agileoracles/leave_portal_app/service/LeaveCategorizationService.class
+com/agileoracles/leave_portal_app/exception/GlobalExceptionHandler.class
+com/agileoracles/leave_portal_app/config/OciConfiguration.class
+com/agileoracles/leave_portal_app/service/LeaveRequestDatabaseService.class
